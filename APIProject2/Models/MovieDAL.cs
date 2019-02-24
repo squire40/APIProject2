@@ -22,6 +22,17 @@ namespace MovieAPI.Models
             return data;
         }
 
+        public static List<MovieDB> SearchByTitle(string title)
+        {
+            List<MovieDB> results = new List<MovieDB>();
+
+            string apikey = "&apikey=e3c05793";
+            string output = GetData($"http://www.omdbapi.com/?t={title}{apikey}");
+            MovieDB movie = new MovieDB(output);
+            results.Add(movie);
+            return results;
+        }
+
         public static MovieDB GetMovie()
         {
             string apikey = "&apikey=e3c05793";

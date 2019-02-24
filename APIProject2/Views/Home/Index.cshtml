@@ -1,6 +1,16 @@
-﻿@model MovieAPI.Models.MovieDB
+﻿@model APIProject2.Models.MovieModel
 
-@Model.Title
-@Model.Genre
-@Model.Metascore
-@Model.Year
+@using (Html.BeginForm("Search", "Home", FormMethod.Post))
+{
+    <label for="Title" class="form-control">Search by title</label>
+    @Html.TextBox("Title", null, new { @class = "form-control" })
+    <input type="submit" class="form-control" />
+}
+
+@foreach (var movie in Model.Movies)
+{
+    @movie.Title
+    @movie.Genre
+    @movie.Metascore
+    @movie.Year
+}
