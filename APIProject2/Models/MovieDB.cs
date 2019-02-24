@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Script.Serialization;
 
-namespace MovieAPI.Models
+namespace APIProject2.Models
 {
     public class MovieDB
     {
@@ -14,23 +14,23 @@ namespace MovieAPI.Models
         //public int ID { get; set; }
         public string Title { get; set; }
         public string Year { get; set; }
-        public string Genre { get; set; }
-        public string Metascore { get; set; }
+        public string ImdbID { get; set; }
+        public string Poster { get; set; }
         
 
         public MovieDB(string APIText)
         {
-            var movieJson = JObject.Parse(APIText).ToString();
+            //var movieJson = JObject.Parse(APIText).ToString();
 
             JavaScriptSerializer oJS = new JavaScriptSerializer();
             MovieDB mov = new MovieDB();
 
-            mov = oJS.Deserialize<MovieDB>(movieJson);
+            mov = oJS.Deserialize<MovieDB>(APIText);
 
             Title = mov.Title;
             Year = mov.Year;
-            Genre = mov.Genre;
-            Metascore = mov.Metascore;
+            ImdbID = mov.ImdbID;
+            Poster = mov.Poster;
         }
 
         public MovieDB() { }

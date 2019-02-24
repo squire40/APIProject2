@@ -1,5 +1,4 @@
 ﻿using APIProject2.Models;
-using MovieAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,15 +12,17 @@ namespace APIProject2.Controllers
         public ActionResult Index()
         {
             MovieDB movie = MovieDAL.GetMovie();
-
-            return View(movie);
+            var model = new MovieModel();
+            model.Movies = new List<MovieDB>();
+            model.Movies.Add(movie);
+            return View(model);
         }
 
         public ActionResult Search(MovieModel model)
         {
             model.Movies = MovieDAL.SearchByTitle(model.Title);
 
-            return View(model);
+            return View("Index", model);
         }
 
         public ActionResult About()
