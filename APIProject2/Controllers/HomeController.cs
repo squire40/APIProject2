@@ -14,7 +14,6 @@ namespace APIProject2.Controllers
             MovieDB movie = MovieDAL.GetMovie();
             var model = new MovieModel();
             model.Movies = new List<MovieDB>();
-            model.Movies.Add(movie);
             return View(model);
         }
 
